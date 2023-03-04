@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import {Banner} from "./Banner";
+import {Game} from "./Game";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [scoreNumber, setScoreNumber] = React.useState(0);
+
+    function handleScoreNumber(value) {
+        setScoreNumber(value)
+    }
+
+    return (
+        <div style={{
+            display: 'flex',
+            flexDirection: "column",
+            justifyContent: 'center',
+            alignItems: 'center',
+            order: '1px solid black',
+            border: '1px solid aqua', height: '100vh'
+        }}>
+            <Banner scoreNumber={scoreNumber}/>
+            <Game handleScoreNumber={handleScoreNumber} scoreNumber={scoreNumber}/>
+        </div>
+    );
 }
 
 export default App;
