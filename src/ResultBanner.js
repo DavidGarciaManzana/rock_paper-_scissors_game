@@ -19,7 +19,7 @@ function ResultBanner({setGameStatus, setButtonPicked, setHousePicked, setEndGam
                     onClick={() => {
                         setGameStatus('initial')
                         setButtonPicked('')
-                        setHousePicked('')
+                        setHousePicked(false)
                         setEndGame('')
                     }}> Play Again
             </button>

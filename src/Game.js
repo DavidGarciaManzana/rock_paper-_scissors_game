@@ -10,7 +10,7 @@ let houseComponent;
 function Game({scoreNumber, handleScoreNumber}) {
     const [gameStatus, setGameStatus] = React.useState('initial');
     const [buttonPicked, setButtonPicked] = React.useState('');
-    const [housePicked, setHousePicked] = React.useState('');
+    const [housePicked, setHousePicked] = React.useState(false);
     const [endGame, setEndGame] = React.useState('');
 
 
@@ -20,7 +20,7 @@ function Game({scoreNumber, handleScoreNumber}) {
         setGameStatus('user-picked')
 
         function handleHousePicked() {
-            setHousePicked('picked');
+            setHousePicked(true);
         }
 
         setTimeout(handleHousePicked, 1000);
@@ -86,11 +86,11 @@ function Game({scoreNumber, handleScoreNumber}) {
                     <ScissorsButton handleButtonPicked={handleButtonPicked}/>
                 </>
             )}
-            {buttonPicked === 'rock' && housePicked === '' && (<><RockButton/><WaitButton/></>)}
-            {buttonPicked === 'paper' && housePicked === '' && (<><PaperButton/><WaitButton/></>)}
-            {buttonPicked === 'scissors' && housePicked === '' && (<><ScissorsButton/><WaitButton/></>)}
+            {buttonPicked === 'rock' && housePicked === false && (<><RockButton/><WaitButton/></>)}
+            {buttonPicked === 'paper' && housePicked === false && (<><PaperButton/><WaitButton/></>)}
+            {buttonPicked === 'scissors' && housePicked === false && (<><ScissorsButton/><WaitButton/></>)}
 
-            {buttonPicked === 'rock' && housePicked === 'picked' && (
+            {buttonPicked === 'rock' && housePicked === true && (
                 <>
                     <RockButton/>
                     <ResultBanner setGameStatus={setGameStatus} setButtonPicked={setButtonPicked}
@@ -98,7 +98,7 @@ function Game({scoreNumber, handleScoreNumber}) {
                     {houseComponent}
                 </>
             )}
-            {buttonPicked === 'paper' && housePicked === 'picked' && (
+            {buttonPicked === 'paper' && housePicked === true && (
                 <>
                     <PaperButton/>
                     <ResultBanner setGameStatus={setGameStatus} setButtonPicked={setButtonPicked}
@@ -106,7 +106,7 @@ function Game({scoreNumber, handleScoreNumber}) {
                     {houseComponent}
                 </>
             )}
-            {buttonPicked === 'scissors' && housePicked === 'picked' && (
+            {buttonPicked === 'scissors' && housePicked === true && (
                 <>
                     <ScissorsButton/>
                     <ResultBanner setGameStatus={setGameStatus} setButtonPicked={setButtonPicked}
