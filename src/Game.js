@@ -7,7 +7,7 @@ import {ResultBanner} from "./ResultBanner";
 
 let houseComponent;
 
-function Game({scoreNumber, handleScoreNumber}) {
+function Game({ handleScoreNumber}) {
     const [gameStatus, setGameStatus] = React.useState('initial');
     const [buttonPicked, setButtonPicked] = React.useState('');
     const [housePicked, setHousePicked] = React.useState(false);
@@ -19,11 +19,9 @@ function Game({scoreNumber, handleScoreNumber}) {
         setButtonPicked(userPicked)
         setGameStatus('user-picked')
 
-        function handleHousePicked() {
-            setHousePicked(true);
-        }
 
-        setTimeout(handleHousePicked, 1000);
+
+        setTimeout(()=>{setHousePicked(true)}, 1000);
 
         let randomNumber = Math.floor(Math.random() * (3) + 1)
         let houseValue;
@@ -46,14 +44,9 @@ function Game({scoreNumber, handleScoreNumber}) {
             (userPicked === 'scissors' && houseValue === 'paper')
         ) {
             setEndGame('win');
-
-            function handleScore() {
-                handleScoreNumber(scoreNumber + 1)
-            }
-
-            setTimeout(handleScore, 1000);
-
-
+            setTimeout(() => {
+                handleScoreNumber(1)
+            }, 1000);
         } else if (
             (userPicked === 'rock' && houseValue === 'paper') ||
             (userPicked === 'paper' && houseValue === 'scissors') ||
@@ -61,11 +54,9 @@ function Game({scoreNumber, handleScoreNumber}) {
         ) {
             setEndGame('lose');
 
-            function handleScore() {
-                handleScoreNumber(scoreNumber - 1)
-            }
-
-            setTimeout(handleScore, 1000);
+            setTimeout(() => {
+                handleScoreNumber(-1)
+            }, 1000);
         } else {
             window.alert('Something is wrong')
         }

@@ -7,7 +7,7 @@ function App() {
     const [scoreNumber, setScoreNumber] = React.useState(0);
 
     function handleScoreNumber(value) {
-        setScoreNumber(value)
+        setScoreNumber(scoreNumber + value)
     }
 
     return (
@@ -20,7 +20,7 @@ function App() {
             border: '1px solid aqua', height: '100vh'
         }}>
             <Banner scoreNumber={scoreNumber}/>
-            <Game handleScoreNumber={handleScoreNumber} scoreNumber={scoreNumber}/>
+            <Game handleScoreNumber={handleScoreNumber} />
         </div>
     );
 }
